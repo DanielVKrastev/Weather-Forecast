@@ -5,7 +5,7 @@ export default function WeatherAPI() {
     const [loading, setLoading] = useState(true);
 
     const city = "Razgrad";
-    const apiKey = '9b724ec1308117814d078e59c448c5fc';
+    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
     useEffect(() => {
         async function fetchWeather() {
@@ -41,7 +41,6 @@ export default function WeatherAPI() {
                 <div>🌡 Max: {Math.round(weather.main.temp_max)}°</div>
                 <div>❄ Min: {Math.round(weather.main.temp_min)}°</div>
             </div>
-            
         </div>
     );
 }
