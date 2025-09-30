@@ -4,7 +4,13 @@ export default function WeatherAPI() {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const city = "Razgrad";
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=bg&appid=${apiKey}`)
+    });
+
+    const city = "Plovdiv";
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
     useEffect(() => {
@@ -20,7 +26,7 @@ export default function WeatherAPI() {
                 console.error(`Error in loading on weather: ${error}`);
             } finally {
                 setLoading(false);
-                
+
             }
         }
 
@@ -40,6 +46,7 @@ export default function WeatherAPI() {
             <div className="mt-4 flex justify-center gap-6 text-lg">
                 <div>🌡 Max: {Math.round(weather.main.temp_max)}°</div>
                 <div>❄ Min: {Math.round(weather.main.temp_min)}°</div>
+            <pre>{JSON.stringify(weather, null, 2)}</pre>
             </div>
         </div>
     );
