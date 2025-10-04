@@ -11,6 +11,10 @@ export default function WeatherAPI() {
             const data = await weatherAPI.fetchWeather('Sofia');
             setWeather(data);
         }
+        fetchDataWeather();
+        setLoading(false);
+        
+    }, []);
 
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
     
