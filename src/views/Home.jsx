@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 
 import currentWeatherAPI from "../api/currentWeatherAPI.js";
+import hourlyForecastAPI from "../api/hourlyForecastAPI.js";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
+    const [hourlyWeather, setHourlyWeather] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchDataWeather() {
             const data = await currentWeatherAPI.getCurrentWeather('Sofia');
+            const hourlyData = await hourlyForecastAPI.getHourlyForecast('Sofia');
+            setHourlyWeather(hourlyData);
             setWeather(data);
         }
         fetchDataWeather();
@@ -28,6 +32,8 @@ export default function Home() {
                 <div>🌡 Max: {Math.round(weather.main.temp_max)}°</div>
                 <div>❄ Min: {Math.round(weather.main.temp_min)}°</div>
                 <pre>{JSON.stringify(weather, null, 2)}</pre>
+                <div>----------------------------------------</div>
+                <pre>{JSON.stringify(hourlyWeather, null, 2)}</pre>
             </div>
         </div>
     );
