@@ -7,7 +7,7 @@ export default function WeatherAPI() {
 
     navigator.geolocation.getCurrentPosition((pos) => {
         const { latitude, longitude } = pos.coords;
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=bg&appid=${apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${apiKey}`)
     });
 
     const city = "Plovdiv";
@@ -17,7 +17,7 @@ export default function WeatherAPI() {
         async function fetchWeather() {
             try {
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=bg&appid=${apiKey}`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`
                 );
 
                 const data = await response.json();
@@ -38,10 +38,10 @@ export default function WeatherAPI() {
         return <p className="text-center mt-10">Error in loading</p>;
 
     return (
-        <div className="text-center text-white mt-20">
+        <div className="text-center text-white bg-teal-300">
             <h1 className="text-4xl font-bold">{weather.name}</h1>
             <p className="text-6xl font-semibold">{Math.round(weather.main.temp)}°C</p>
-            <p className="text-2xl mt-1 capitalize">{weather.weather[0].description}</p>
+            <p className="text-6xl mt-1 capitalize">{weather.weather[0].description}</p>
 
             <div className="mt-4 flex justify-center gap-6 text-lg">
                 <div>🌡 Max: {Math.round(weather.main.temp_max)}°</div>
