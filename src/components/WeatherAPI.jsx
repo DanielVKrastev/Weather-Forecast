@@ -1,51 +1,19 @@
 import { useEffect, useState } from "react";
 
+import weatherAPI from "../api/weatherAPI.js";
+
 export default function WeatherAPI() {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const city = "Sofia";
-    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-
     useEffect(() => {
-        async function fetchWeather() {
-            setLoading(true);
-            try {
-                const position = await new Promise((resolve, reject) =>
-                    navigator.geolocation.getCurrentPosition(resolve, reject)
-                );
-
-                const { latitude, longitude } = position.coords;
-                const urlAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${apiKey}`;
-
-                const response = await fetch(urlAPI);
-                const data = await response.json();
-
-                setWeather(data);
-
-            } catch (getError) {
-                try{
-                    const fallbackUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`;
-                    const response = await fetch(fallbackUrl);
-                    const data = await response.json();
-
-                    setWeather(data);
-
-                }catch(fetchError){
-                    console.error(`Error in loading on weather: ${fetchError}`);
-                }
-            } finally {
-                setLoading(false);
-            }
+        async function fetchDataWeather() {
+            const data = await weatherAPI.fetchWeather('Sofia');
+            setWeather(data);
         }
 
-        fetchWeather();
-    }, [city, apiKey]);
-
-    if (loading) return <p className="text-center mt-10">Loading...</p>;
-    if (!weather || weather.cod !== 200)
-        return <p className="text-center mt-10">Error in loading</p>;
-
+    if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
+    
     return (
         <div className="text-center text-white bg-teal-300">
             <h1 className="text-4xl font-bold">{weather.name}</h1>
