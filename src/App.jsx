@@ -1,10 +1,10 @@
-import WeatherAPI from "./components/WeatherAPI";
+import Home from "./views/Home";
 
 function App() {
 
   return (
     <>
-      <WeatherAPI />
+      <Home />
     </>
   )
 }

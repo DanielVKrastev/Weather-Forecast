@@ -22,7 +22,7 @@ async function fetchByCity(city) {
 }
 
 export default {
-  async fetchWeather(city) {
+  async getCurrentWeather(city) {
     let weatherData = [];
     try {
       const pos = await getCurrentPosition();

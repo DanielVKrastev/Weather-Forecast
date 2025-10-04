@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-import weatherAPI from "../api/weatherAPI.js";
+import currentWeatherAPI from "../api/currentWeatherAPI.js";
 
-export default function WeatherAPI() {
+export default function Home() {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchDataWeather() {
-            const data = await weatherAPI.fetchWeather('Sofia');
+            const data = await currentWeatherAPI.getCurrentWeather('Sofia');
             setWeather(data);
         }
         fetchDataWeather();
