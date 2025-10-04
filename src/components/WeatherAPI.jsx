@@ -4,29 +4,38 @@ export default function WeatherAPI() {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
-    navigator.geolocation.getCurrentPosition((pos) => {
-        const { latitude, longitude } = pos.coords;
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${apiKey}`)
-    });
-
-    const city = "Plovdiv";
+    const city = "Sofia";
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
     useEffect(() => {
         async function fetchWeather() {
+            setLoading(true);
             try {
-                const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`
+                const position = await new Promise((resolve, reject) =>
+                    navigator.geolocation.getCurrentPosition(resolve, reject)
                 );
 
+                const { latitude, longitude } = position.coords;
+                const urlAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${apiKey}`;
+
+                const response = await fetch(urlAPI);
                 const data = await response.json();
+
                 setWeather(data);
-            } catch (error) {
-                console.error(`Error in loading on weather: ${error}`);
+
+            } catch (getError) {
+                try{
+                    const fallbackUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`;
+                    const response = await fetch(fallbackUrl);
+                    const data = await response.json();
+
+                    setWeather(data);
+
+                }catch(fetchError){
+                    console.error(`Error in loading on weather: ${fetchError}`);
+                }
             } finally {
                 setLoading(false);
-
             }
         }
 
@@ -46,7 +55,7 @@ export default function WeatherAPI() {
             <div className="mt-4 flex justify-center gap-6 text-lg">
                 <div>🌡 Max: {Math.round(weather.main.temp_max)}°</div>
                 <div>❄ Min: {Math.round(weather.main.temp_min)}°</div>
-            <pre>{JSON.stringify(weather, null, 2)}</pre>
+                <pre>{JSON.stringify(weather, null, 2)}</pre>
             </div>
         </div>
     );
