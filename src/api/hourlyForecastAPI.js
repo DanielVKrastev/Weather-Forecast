@@ -8,7 +8,7 @@ async function getCurrentPosition() {
 }
 
 async function fetchByCoords(latitude, longitude) {
-  const url = `${urlAPI}?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+  const url = `${urlAPI}?lat=${latitude}&units=metric&lon=${longitude}&appid=${apiKey}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
   return await res.json();
@@ -37,7 +37,7 @@ export default {
         weatherData = null;
       }
     }
-
+    
     return weatherData;
   },
 };
