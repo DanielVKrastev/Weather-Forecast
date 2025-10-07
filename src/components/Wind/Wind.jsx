@@ -2,6 +2,8 @@ export default function Wind({
     wind,
     airPollution
 }) {
+    console.log(wind);
+    
     const msTokmh = 3.6;
     const speedKMH = (wind.speed * msTokmh).toFixed(2);
     const gusts = (wind.gust * msTokmh).toFixed(2);
@@ -25,7 +27,7 @@ export default function Wind({
             case 3: return 'Moderate'; 
             case 4: return 'Poor';
             case 5: return 'Very Poor';
-            default: return 'No info';
+            default: return 'No data';
         }
     };
 
@@ -44,7 +46,7 @@ export default function Wind({
                             </tr>
                             <tr className="bg-white border-b border-gray-200">
                                 <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Wind Gusts</td>
-                                <td>{gusts} km/h</td>
+                                <td>{gusts === 'NaN' ? 'No data' : `${gusts} km/h`}</td>
                             </tr>
                             <tr className="bg-white border-b border-gray-200">
                                 <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Air Quality</td>

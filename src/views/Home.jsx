@@ -15,9 +15,9 @@ export default function Home() {
 
     useEffect(() => {
         async function fetchDataWeather() {
-            const data = await currentWeatherAPI.getCurrentWeather('Sofia');
-            const hourlyData = await hourlyForecastAPI.getHourlyForecast('Sofia');
-            const airPollutionData = await airPollutionAPI.getAirPollution('Sofia');
+            const data = await currentWeatherAPI.getCurrentWeather('Ruse');
+            const hourlyData = await hourlyForecastAPI.getHourlyForecast('Ruse');
+            const airPollutionData = await airPollutionAPI.getAirPollution('Ruse');
             setHourlyWeather(hourlyData);
             setWeather(data);
             setAirPollution(airPollutionData);
