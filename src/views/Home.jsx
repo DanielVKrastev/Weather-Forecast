@@ -6,6 +6,7 @@ import Header from "../components/Header/Header.jsx";
 import HourlyForecast from "../components/HourlyForecast/HourlyForecast.jsx";
 import Wind from "../components/Wind/Wind.jsx";
 import airPollutionAPI from "../api/airPollutionAPI.js";
+import WeatherMap from "../components/Weather-map/WeatherMap.jsx";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
@@ -45,6 +46,9 @@ export default function Home() {
                     wind={weather.wind || {}}
                     airPollution={airPollution}
                 />
+                <div className="col-span-2 border">
+                    <WeatherMap />
+                </div>
             </div>
         </div>
     );

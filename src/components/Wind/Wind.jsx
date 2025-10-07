@@ -2,8 +2,6 @@ export default function Wind({
     wind,
     airPollution
 }) {
-    console.log(wind);
-    
     const msTokmh = 3.6;
     const speedKMH = (wind.speed * msTokmh).toFixed(2);
     const gusts = (wind.gust * msTokmh).toFixed(2);

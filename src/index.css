@@ -1,3 +1,29 @@
+@import "leaflet/dist/leaflet.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.leaflet-legend {
+  background: white;
+  padding: 8px 10px;
+  line-height: 18px;
+  color: #333;
+  font-size: 13px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.leaflet-legend h4 {
+  margin: 0 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.leaflet-legend i {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 4px;
+}
