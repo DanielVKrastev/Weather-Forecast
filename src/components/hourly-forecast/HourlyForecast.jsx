@@ -15,7 +15,7 @@ export default function HourlyForecast({
     });
 
     return (
-        <ScrollContainer className="grid auto-cols-max grid-flow-col border p-4 overflow-x-auto col-span-2">
+        <ScrollContainer className="grid auto-cols-max grid-flow-col border p-4 overflow-x-auto">
             {forecastTwentyFourHours.map((hour, index) => (
                 <div
                     key={index}

@@ -49,11 +49,11 @@ export default function Home() {
                     />
                 </div>
 
-                <div className="row-span-3">
+                <div className="border row-span-3">
                     <WeatherMap />
                 </div>
 
-                <div className="row-span-3">
+                <div className="row-span-2">
                     <DailyForecast
                         dailyForecast={dailyForecast || []}
                     />
@@ -66,6 +66,40 @@ export default function Home() {
                     />
                 </div>
 
+                <div className="col-span-1">
+                    <Wind
+                        wind={weather.wind || {}}
+                        airPollution={airPollution}
+                    />
+                </div>
+
+                <div className="col-span-1">
+                    <Wind
+                        wind={weather.wind || {}}
+                        airPollution={airPollution}
+                    />
+                </div>
+
+                <div className="col-span-2">
+                    <Wind
+                        wind={weather.wind || {}}
+                        airPollution={airPollution}
+                    />
+                </div>
+
+                <div className="col-span-2">
+                    <Wind
+                        wind={weather.wind || {}}
+                        airPollution={airPollution}
+                    />
+                </div>
+
+                <div className="col-span-">
+                    <Wind
+                        wind={weather.wind || {}}
+                        airPollution={airPollution}
+                    />
+                </div>
             </div>
         </div>
     );
