@@ -9,6 +9,7 @@ import airPollutionAPI from "../api/airPollutionAPI.js";
 import WeatherMap from "../components/Weather-map/WeatherMap.jsx";
 import DailyForecast from "../components/daily-forecast/DailyForecast.jsx";
 import dailyForecastAPI from "../api/dailyForecastAPI.js";
+import Humidity from "../components/humidity/Humidity.jsx";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
@@ -32,6 +33,9 @@ export default function Home() {
         setLoading(false);
 
     }, []);
+
+    console.log(weather);
+    
 
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
 
@@ -58,7 +62,7 @@ export default function Home() {
             </div>
 
             <div className="col-span-1">
-                <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                <Humidity weather={weather} />
             </div>
 
             <div className="col-span-1">
