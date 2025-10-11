@@ -1,5 +1,5 @@
 const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-const urlAPI = 'https://api.openweathermap.org/data/2.5/weather';
+const urlAPI = 'https://pro.openweathermap.org/data/2.5/weather';
 
 async function getCurrentPosition() {
   return new Promise((resolve, reject) => {
