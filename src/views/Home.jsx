@@ -59,7 +59,7 @@ export default function Home() {
                     <DailyForecast dailyForecast={dailyForecast || []} />
                 </div>
 
-                <div className="col-span-1 order-4 lg:order-none">
+                <div className="col-span-1 order-none lg:order-none">
                     <Wind wind={weather.wind || {}} airPollution={airPollution} />
                 </div>
 
@@ -67,9 +67,9 @@ export default function Home() {
                     <Humidity weather={weather} />
                 </div>
 
-<div className="xxl:col-span-1 col-span-2">
-    <SunriseSunset weather={weather} />
-</div>
+                <div className="xxl:col-span-1 col-span-1">
+                    <SunriseSunset weather={weather} />
+                </div>
 
 
 
