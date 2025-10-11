@@ -9,7 +9,7 @@ export default function DailyForecast({
     console.log(dailyForecastList);
 
     return (
-        <ScrollContainer className="grid grid-cols-1 grid-flow-row border p-4 overflow-x-auto h-96">
+        <ScrollContainer className="grid grid-cols-1 grid-flow-row border p-4 overflow-x-auto h-auto min-h-[300px] max-h-[590px]">
             <div
                 className="border rounded-2xl p-1 text-center bg-white text-gray-800 w-full h-16 m-1"
             >
