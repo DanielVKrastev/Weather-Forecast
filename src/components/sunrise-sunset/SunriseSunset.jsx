@@ -18,11 +18,11 @@ export default function SunriseSunset({
         <div
             className="rounded-2xl p-4 bg-white text-gray-800 m-1 h-full"
         >
-                <table className="w-full h-full text-center text-gray-500">
-                    <tbody>
+                <table className="table-auto h-full text-center text-gray-500 mx-auto">
+                    <tbody className="w-auto">
                         <tr>
-                            <td colSpan={2} className="border-r border-gray-200"><img src="./icons/sunrise.png" alt="sunrise" className="h-auto min-h-[60px] max-h-[100px] mx-auto"/></td>
-                            <td colSpan={2}><img src="./icons/sunset.png" alt="sunset" className="h-auto min-h-[60px] max-h-[100px] mx-auto"/></td>
+                            <td colSpan={2} className="border-r border-gray-200"><img src="./icons/sunrise.png" alt="sunrise" className="w-auto h-[11vh] mx-auto"/></td>
+                            <td colSpan={2}><img src="./icons/sunset.png" alt="sunset" className="h-[11vh] mx-auto"/></td>
                         </tr>
                         <tr>
                             <td className="px-4 py-2 font-ligh">Sunrise</td>

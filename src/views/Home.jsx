@@ -37,52 +37,54 @@ export default function Home() {
     }, []);
 
     console.log(weather);
-    
+
 
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
 
     return (
-    <div className="text-white bg-teal-300 min-h-screen p-2 md:p-4">
-        <Header weather={weather} />
+        <div className="text-white bg-teal-300 min-h-screen p-2 md:p-4">
+            <Header weather={weather} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
-            <div className="lg:col-span-3 md:col-span-4 order-first">
-                <HourlyForecast hourlyWeather={hourlyWeather || []} />
-            </div>
+                <div className="lg:col-span-3 md:col-span-4 order-first">
+                    <HourlyForecast hourlyWeather={hourlyWeather || []} />
+                </div>
 
-            <div className="border lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-none">
-                <WeatherMap />
-            </div>
+                <div className="border lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-none">
+                    <WeatherMap />
+                </div>
 
-            <div className="order-none lg:row-span-3 lg:col-span-1 lg:order-none md:col-span-2 md:order-none">
-                <DailyForecast dailyForecast={dailyForecast || []} />
-            </div>
+                <div className="order-none lg:row-span-3 lg:col-span-1 lg:order-none md:col-span-2 md:order-none">
+                    <DailyForecast dailyForecast={dailyForecast || []} />
+                </div>
 
-            <div className="col-span-1 order-4 lg:order-none">
-                <Wind wind={weather.wind || {}} airPollution={airPollution} />
-            </div>
+                <div className="col-span-1 order-4 lg:order-none">
+                    <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                </div>
 
-            <div className="col-span-1">
-                <Humidity weather={weather} />
-            </div>
+                <div className="col-span-1">
+                    <Humidity weather={weather} />
+                </div>
 
-            <div className="col-span-1">
-                <SunriseSunset weather={weather} />
-            </div>
+<div className="xxl:col-span-1 col-span-2">
+    <SunriseSunset weather={weather} />
+</div>
 
-            <div className="col-span-1">
-                <Visibility weather={weather} />
-            </div>
 
-            <div className="lg:col-span-2">
-                <Wind wind={weather.wind || {}} airPollution={airPollution} />
-            </div>
 
-            <div className="lg:col-span-1">
-                <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                <div className="col-span-1">
+                    <Visibility weather={weather} />
+                </div>
+
+                <div className="lg:col-span-2">
+                    <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                </div>
+
+                <div className="lg:col-span-1">
+                    <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
 }
