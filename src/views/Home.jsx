@@ -10,6 +10,7 @@ import WeatherMap from "../components/Weather-map/WeatherMap.jsx";
 import DailyForecast from "../components/daily-forecast/DailyForecast.jsx";
 import dailyForecastAPI from "../api/dailyForecastAPI.js";
 import Humidity from "../components/humidity/Humidity.jsx";
+import SunriseSunset from "../components/sunrise-sunset/SunriseSunset.jsx";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
@@ -66,7 +67,7 @@ export default function Home() {
             </div>
 
             <div className="col-span-1">
-                <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                <SunriseSunset weather={weather} />
             </div>
 
             <div className="col-span-1">

@@ -22,7 +22,7 @@ export default function Humidity({
 
     return (
         <div
-            className="border rounded-2xl p-5 bg-white text-gray-800 m-1"
+            className="border rounded-2xl p-5 bg-white text-gray-800 m-1 h-full"
         >
             <div>
                 <div className="font-semibold">Humidity</div>
