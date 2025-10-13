@@ -28,7 +28,7 @@ export default function PressureGauge({ weather }) {
     };
 
     return (<>
-        <div className="border rounded-2xl p-6 bg-white text-gray-800 m-2 shadow-md ">
+        <div className="border rounded-2xl p-6 bg-white text-gray-800 m-2 shadow-md h-full">
             <h3 className="font-semibold text-lg mb-2">Atmospheric Pressure</h3>
             <div className="flex flex-col items-center justify-center">
 

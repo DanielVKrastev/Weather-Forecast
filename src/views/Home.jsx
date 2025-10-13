@@ -13,12 +13,15 @@ import Humidity from "../components/humidity/Humidity.jsx";
 import SunriseSunset from "../components/sunrise-sunset/SunriseSunset.jsx";
 import Visibility from "../components/visibility/Visibility.jsx";
 import Pressure from "../components/pressure/Pressure.jsx";
+import UviIndex from "../components/uvi-index/UviIndex.jsx";
+import uviAPI from "../api/uviAPI.js";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
     const [hourlyWeather, setHourlyWeather] = useState([]);
     const [airPollution, setAirPollution] = useState(null);
     const [dailyForecast, setDailyForecast] = useState(null);
+    const [uviIndex, setUvi] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -27,10 +30,12 @@ export default function Home() {
             const hourlyData = await hourlyForecastAPI.getHourlyForecast('Ruse');
             const airPollutionData = await airPollutionAPI.getAirPollution('Ruse');
             const dailyData = await dailyForecastAPI.getDailyForecast('Ruse', 10);
+            const uviData = await uviAPI.getUvi('Ruse');
             setHourlyWeather(hourlyData);
             setWeather(data);
             setAirPollution(airPollutionData);
             setDailyForecast(dailyData);
+            setUvi(uviData);
         }
         fetchDataWeather();
         setLoading(false);
@@ -38,6 +43,7 @@ export default function Home() {
     }, []);
 
     console.log(weather);
+    console.log(uviIndex);
 
 
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
@@ -48,7 +54,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
-                <div className="lg:col-span-3 md:col-span-4 order-first">
+                <div className="col-span-1 lg:col-span-3 md:col-span-4 order-first">
                     <HourlyForecast hourlyWeather={hourlyWeather || []} />
                 </div>
 
@@ -60,15 +66,15 @@ export default function Home() {
                     <DailyForecast dailyForecast={dailyForecast || []} />
                 </div>
 
-                <div className="col-span-1 order-none lg:order-none">
-                    <Wind wind={weather.wind || {}} airPollution={airPollution} />
+                <div className="col-span-1 md:col-span-2 lg:col-span-1 order-none lg:order-none">
+                    <UviIndex uviIndex={uviIndex}/>
                 </div>
 
                 <div className="col-span-1">
                     <Humidity weather={weather} />
                 </div>
 
-                <div className="xxl:col-span-1 col-span-1">
+                <div className="xxl:col-span-1 lg:col-span-2">
                     <SunriseSunset weather={weather} />
                 </div>
 
@@ -76,11 +82,11 @@ export default function Home() {
                     <Visibility weather={weather} />
                 </div>
 
-                <div className="lg:col-span-1">
+                <div className="lg:col-span-1 md:col-span-2">
                     <Pressure weather={weather} />
                 </div>
 
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-1 xxl:col-span-2">
                     <Wind wind={weather.wind || {}} airPollution={airPollution} />
                 </div>
 
