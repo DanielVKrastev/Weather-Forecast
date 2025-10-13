@@ -42,10 +42,6 @@ export default function Home() {
 
     }, []);
 
-    console.log(weather);
-    console.log(uviIndex);
-
-
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
 
     return (

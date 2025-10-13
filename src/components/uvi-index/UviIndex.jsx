@@ -11,7 +11,7 @@ export default function UVIndex({ uviIndex }) {
     const level = getUVLevel(uvi);
 
     return (
-        <div className="border rounded-2xl p-5 bg-white text-gray-800 m-1 shadow-md">
+        <div className="border rounded-2xl p-5 bg-white text-gray-800 m-1 shadow-md h-full">
             <h2 className="font-semibold text-lg mb-2">UV Index</h2>
 
             {/* Value and descrp */}
