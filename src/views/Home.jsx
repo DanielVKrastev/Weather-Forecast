@@ -12,6 +12,7 @@ import dailyForecastAPI from "../api/dailyForecastAPI.js";
 import Humidity from "../components/humidity/Humidity.jsx";
 import SunriseSunset from "../components/sunrise-sunset/SunriseSunset.jsx";
 import Visibility from "../components/visibility/Visibility.jsx";
+import Pressure from "../components/pressure/Pressure.jsx";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
@@ -71,19 +72,18 @@ export default function Home() {
                     <SunriseSunset weather={weather} />
                 </div>
 
-
-
                 <div className="col-span-1">
                     <Visibility weather={weather} />
+                </div>
+
+                <div className="lg:col-span-1">
+                    <Pressure weather={weather} />
                 </div>
 
                 <div className="lg:col-span-2">
                     <Wind wind={weather.wind || {}} airPollution={airPollution} />
                 </div>
 
-                <div className="lg:col-span-1">
-                    <Wind wind={weather.wind || {}} airPollution={airPollution} />
-                </div>
             </div>
         </div>
     );
