@@ -23,26 +23,81 @@ export default function Home() {
     const [dailyForecast, setDailyForecast] = useState(null);
     const [uviIndex, setUvi] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [videoSrc, setVideoSrc] = useState(() => {
+        return localStorage.getItem("cachedVideoSrc") || "";
+    });
 
     useEffect(() => {
         async function fetchDataWeather() {
-            const data = await currentWeatherAPI.getCurrentWeather('Ruse');
-            const hourlyData = await hourlyForecastAPI.getHourlyForecast('Ruse');
-            const airPollutionData = await airPollutionAPI.getAirPollution('Ruse');
-            const dailyData = await dailyForecastAPI.getDailyForecast('Ruse', 10);
-            const uviData = await uviAPI.getUvi('Ruse');
-            setHourlyWeather(hourlyData);
+            const data = await currentWeatherAPI.getCurrentWeather('Burgas');
+            const hourlyData = await hourlyForecastAPI.getHourlyForecast('Burgas');
+            const airPollutionData = await airPollutionAPI.getAirPollution('Burgas');
+            const dailyData = await dailyForecastAPI.getDailyForecast('Burgas', 10);
+            const uviData = await uviAPI.getUvi('Burgas');
+
             setWeather(data);
+            setHourlyWeather(hourlyData);
             setAirPollution(airPollutionData);
             setDailyForecast(dailyData);
             setUvi(uviData);
+            setLoading(false);
         }
-        fetchDataWeather();
-        setLoading(false);
 
+        fetchDataWeather();
     }, []);
 
+    // Set video background
+    useEffect(() => {
+        if (!weather) return;
+
+        const newVideo = selectVideo(weather.weather[0].main, weather.weather[0].description);
+        const cachedVideo = localStorage.getItem("cachedVideoSrc");
+
+        if (newVideo !== cachedVideo) {
+            setVideoSrc(newVideo);
+            localStorage.setItem("cachedVideoSrc", newVideo);
+        }
+    }, [weather]);
+
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
+
+    const selectVideo = (weatherMain, weatherDescription) => {
+        if (!weatherMain) return "/videos/sunny.mp4";
+
+        const main = weatherMain.toLowerCase();
+        const description = weatherDescription.toLowerCase();
+
+        let videoSrc = "/videos/sunny.mp4";
+
+        if (main === "clear") {
+            videoSrc = "/videos/sunny.mp4";
+        } else if (main === "rain") {
+            if (description === "light rain" || description === "moderate rain") {
+                videoSrc = "/videos/rain-slow.mp4";
+            } else {
+                videoSrc = "/videos/water-drops-rain.mp4";
+            }
+        } else if (main === "drizzle") {
+            videoSrc = "/videos/water-drops-rain.mp4";
+        } else if (main === "snow") {
+            videoSrc = "/videos/snow-snowing.mp4";
+        } else if (main === "clouds") {
+            if (description === "few clouds" || description === "scattered clouds") {
+                videoSrc = "/videos/few-clouds.mp4";
+            } else {
+                videoSrc = "/videos/dark-clouds.mp4";
+            }
+        } else if (main === "fog") {
+            videoSrc = "/videos/fog.mp4";
+        } else if (main === "thunderstorm") {
+            videoSrc = "/videos/thunders-storm-lighting.mp4";
+        }
+
+        return videoSrc;
+    };
+
+    console.log(weather.weather[0].description);
+
 
     return (
         <>
@@ -54,7 +109,8 @@ export default function Home() {
                     muted
                     playsInline
                     className="absolute top-0 left-0 w-full h-full object-cover z-0"
-                    src={`./videos/sunset-beams.mp4`}
+                    key={videoSrc}
+                    src={videoSrc}
                 />
 
                 <div className="absolute inset-0 bg-black/30 z-10" />
@@ -76,8 +132,8 @@ export default function Home() {
                             <DailyForecast dailyForecast={dailyForecast || []} />
                         </div>
 
-                        <div className="col-span-1 md:col-span-2 lg:col-span-1 order-none lg:order-none">
-                            <UviIndex uviIndex={uviIndex} />
+                        <div className="col-span-1">
+                            <Visibility weather={weather} />
                         </div>
 
                         <div className="col-span-1">
@@ -88,8 +144,8 @@ export default function Home() {
                             <SunriseSunset weather={weather} />
                         </div>
 
-                        <div className="col-span-1">
-                            <Visibility weather={weather} />
+                        <div className="col-span-1 md:col-span-2 lg:col-span-1 order-none lg:order-none">
+                            <UviIndex uviIndex={uviIndex} />
                         </div>
 
                         <div className="lg:col-span-1 md:col-span-2">
