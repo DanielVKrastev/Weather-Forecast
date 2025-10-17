@@ -3,7 +3,7 @@ export default function Header({
 }) {
 
     return (
-        <div className="border p-20 text-center">
+        <div className="p-20 text-center">
             <div className="">
                 <h1 className="text-4xl font-bold">{weather.name}</h1>
                 <p className="text-6xl font-semibold">{Math.round(weather.main.temp)}°C</p>

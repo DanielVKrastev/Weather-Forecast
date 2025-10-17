@@ -24,7 +24,7 @@ export default function DailyForecast({ dailyForecast }) {
   };
 
   return (
-    <ScrollContainer className="flex flex-col overflow-y-auto h-[625px] gap-3 p-2 text-gray-800">
+    <ScrollContainer className="rounded-2xl bg-slate-500/50 p-4 flex flex-col overflow-y-auto h-[625px] gap-3 text-gray-800">
       {dailyForecastList.map((day, index) => {
         const weatherMain = day.weather?.[0]?.main;
         const icon = weatherIcons[weatherMain] || "❔";

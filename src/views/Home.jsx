@@ -118,13 +118,13 @@ export default function Home() {
                 <div className="relative z-20 text-white p-2 md:p-4">
                     <Header weather={weather} />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-500/50 p-4 rounded-3xl">
 
                         <div className="col-span-1 lg:col-span-3 md:col-span-4 order-first">
                             <HourlyForecast hourlyWeather={hourlyWeather || []} />
                         </div>
 
-                        <div className="border lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-none">
+                        <div className="lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-none">
                             <WeatherMap />
                         </div>
 
