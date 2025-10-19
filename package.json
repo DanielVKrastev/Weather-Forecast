@@ -12,6 +12,7 @@
   "dependencies": {
     "env": "^0.0.2",
     "leaflet": "^1.9.4",
+    "lucide-react": "^0.546.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-indiana-drag-scroll": "^2.2.1"
