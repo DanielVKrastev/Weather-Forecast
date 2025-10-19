@@ -96,9 +96,6 @@ export default function Home() {
         return videoSrc;
     };
 
-    console.log(weather.weather[0].description);
-
-
     return (
         <>
             <div className="relative min-h-screen overflow-hidden">
@@ -121,7 +118,10 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-500/50 p-4 rounded-3xl">
 
                         <div className="col-span-1 lg:col-span-3 md:col-span-4 order-first">
-                            <HourlyForecast hourlyWeather={hourlyWeather || []} />
+                            <HourlyForecast 
+                                hourlyWeather={hourlyWeather} 
+                                weather={weather}
+                            />
                         </div>
 
                         <div className="lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-none">
@@ -129,7 +129,7 @@ export default function Home() {
                         </div>
 
                         <div className="order-none lg:row-span-3 lg:col-span-1 lg:order-none md:col-span-2 md:order-none">
-                            <DailyForecast dailyForecast={dailyForecast || []} />
+                            <DailyForecast dailyForecast={dailyForecast} />
                         </div>
 
                         <div className="col-span-1">
