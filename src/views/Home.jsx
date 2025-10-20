@@ -50,7 +50,7 @@ export default function Home() {
     useEffect(() => {
         if (!weather) return;
 
-        const newVideo = selectVideo(weather.weather[0].main, weather.weather[0].description);
+        const newVideo = selectVideo("thunderstorm", "few clouds"); //weather.weather[0].main //weather.weather[0].description
         const cachedVideo = localStorage.getItem("cachedVideoSrc");
 
         if (newVideo !== cachedVideo) {
@@ -67,33 +67,53 @@ export default function Home() {
         const main = weatherMain.toLowerCase();
         const description = weatherDescription.toLowerCase();
 
+        const sunriseTime = new Date(weather.sys.sunrise * 1000);
+        const sunsetTime = new Date(weather.sys.sunset * 1000);
+        const hourTime = new Date(weather.dt * 1000);
+
+        // get only hours
+        const sunriseHour = sunriseTime.getHours();
+        const sunsetHour = sunsetTime.getHours();
+        const hours = hourTime.getHours();
+
+        // check is night
+        const isNight = hours < sunriseHour || hours >= sunsetHour;
+
         let videoSrc = "/videos/sunny.mp4";
+        console.log(main);
+        
 
-        if (main === "clear") {
-            videoSrc = "/videos/sunny.mp4";
-        } else if (main === "rain") {
-            if (description === "light rain" || description === "moderate rain") {
-                videoSrc = "/videos/rain-slow.mp4";
-            } else {
-                videoSrc = "/videos/water-drops-rain.mp4";
-            }
-        } else if (main === "drizzle") {
-            videoSrc = "/videos/water-drops-rain.mp4";
-        } else if (main === "snow") {
-            videoSrc = "/videos/snow-snowing.mp4";
-        } else if (main === "clouds") {
-            if (description === "few clouds" || description === "scattered clouds") {
-                videoSrc = "/videos/few-clouds.mp4";
-            } else {
-                videoSrc = "/videos/dark-clouds.mp4";
-            }
-        } else if (main === "fog") {
-            videoSrc = "/videos/fog.mp4";
-        } else if (main === "thunderstorm") {
-            videoSrc = "/videos/thunders-storm-lighting.mp4";
-        }
+ const dayVideos = {
+    clear: "/videos/sunny.mp4",
+    drizzle: "/videos/water-drops-rain.mp4",
+    snow: "/videos/snow-snowing.mp4",
+    fog: "/videos/fog.mp4",
+    thunderstorm: "/videos/thunders-storm-lighting.mp4",
+    rain:
+      description.includes("light") || description.includes("moderate")
+        ? "/videos/rain-slow.mp4"
+        : "/videos/water-drops-rain.mp4",
+    clouds:
+      description.includes("few") || description.includes("scattered")
+        ? "/videos/few-clouds.mp4"
+        : "/videos/dark-clouds.mp4",
+  };
 
-        return videoSrc;
+  // 🌙 Нощни видеа
+  const nightVideos = {
+    clear: "/videos/clear-night-sky.mp4",
+    drizzle: "/videos/water-drops-rain.mp4",
+    snow: "/videos/snow-snowing.mp4",
+    fog: "/videos/fog.mp4",
+    thunderstorm: "/videos/thunders-storm-lighting.mp4",
+    rain: "/videos/rain-night.mp4",
+    clouds: "/videos/cloud-night-forest.mp4",
+  };
+
+  // 🎬 Връщаме подходящото видео
+  return isNight
+    ? nightVideos[main] || "/videos/clear-night-sky.mp4"
+    : dayVideos[main] || "/videos/sunny.mp4";
     };
 
     return (
@@ -118,8 +138,8 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-500/50 p-4 rounded-3xl">
 
                         <div className="col-span-1 lg:col-span-3 md:col-span-4 order-first">
-                            <HourlyForecast 
-                                hourlyWeather={hourlyWeather} 
+                            <HourlyForecast
+                                hourlyWeather={hourlyWeather}
                                 weather={weather}
                             />
                         </div>
