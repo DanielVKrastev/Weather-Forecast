@@ -30,7 +30,7 @@ export default function PressureGauge({ weather }) {
   const color = getColor(pressure);
 
   return (
-    <div className="border rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50 text-gray-800 m-2 shadow-md hover:shadow-lg transition-all duration-500 h-full">
+    <div className="border rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50 text-gray-800 m-1 shadow-md hover:shadow-lg transition-all duration-500 h-full">
       <h3 className="font-semibold text-lg mb-2 flex items-center justify-between">
         Atmospheric Pressure
         <span
@@ -41,7 +41,7 @@ export default function PressureGauge({ weather }) {
         </span>
       </h3>
 
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center mt-6">
         {/* Gauge */}
         <div className="relative w-48 h-24 flex items-end justify-center">
           <svg viewBox="0 0 100 50" className="w-full h-full">

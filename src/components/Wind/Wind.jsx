@@ -33,8 +33,8 @@ export default function Wind({ wind, airPollution }) {
     const text = getAirQualityText(airQuality);
 
     return (
-        <div className="border rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50 text-gray-800 m-2 shadow-md hover:shadow-lg transition-all duration-500 h-full">
-            <h3 className="font-semibold text-lg mb-3 flex justify-between items-center">
+        <div className="border rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50 text-gray-800 m-1 shadow-md hover:shadow-lg transition-all duration-500 h-full">
+            <h3 className="font-semibold text-lg mb-1 flex justify-between items-center">
                 Wind
                 <span
                     className="text-xs px-2 py-1 rounded-full text-white font-semibold"
@@ -46,7 +46,7 @@ export default function Wind({ wind, airPollution }) {
 
             <div className="flex flex-col items-center">
                 {/* Icon rotation */}
-                <div className="relative mb-3">
+                <div className="relative mb-1">
                     <ArrowUp
                         size={40}
                         style={{
@@ -71,7 +71,7 @@ export default function Wind({ wind, airPollution }) {
                 </div>
 
                 {/* Air Quality Bar */}
-                <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden mt-2">
+                <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden mt-1">
                     <div
                         className="h-3 rounded-full transition-all duration-700"
                         style={{

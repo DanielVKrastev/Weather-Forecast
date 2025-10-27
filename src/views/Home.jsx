@@ -142,7 +142,7 @@ export default function Home() {
                             <WeatherMap />
                         </div>
 
-                        <div className="order-none lg:row-span-3 lg:col-span-1 lg:order-none md:col-span-2 md:order-none">
+                        <div className="order-none sm:col-span-1 lg:row-span-3 lg:col-span-1 lg:order-none md:col-span-1 md:order-none">
                             <DailyForecast dailyForecast={dailyForecast} />
                         </div>
 
@@ -158,7 +158,7 @@ export default function Home() {
                             <SunriseSunset weather={weather} />
                         </div>
 
-                        <div className="col-span-1 md:col-span-2 lg:col-span-1 order-none lg:order-none">
+                        <div className="col-span-1 md:col-span-1 lg:col-span-1 order-none lg:order-none">
                             <UviIndex uviIndex={uviIndex} />
                         </div>
 
@@ -166,7 +166,7 @@ export default function Home() {
                             <Pressure weather={weather} />
                         </div>
 
-                        <div className="lg:col-span-1 xxl:col-span-2">
+                        <div className="md:col-span-2 lg:col-span-1 xxl:col-span-2">
                             <Wind wind={weather.wind || {}} airPollution={airPollution} />
                         </div>
 

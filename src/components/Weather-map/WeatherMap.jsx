@@ -67,7 +67,7 @@ export default function WeatherMap() {
   };
 
   return (
-    <div className="rounded-2xl relative w-full h-full">
+    <div className="rounded-2xl relative w-full lg:h-[80vh] md:h-[50vh]">
       <div id="map" className="w-full h-full rounded-2xl overflow-hidden"></div>
       <ButtonsMap activeLayers={activeLayers} toggleLayer={toggleLayer} />
     </div>

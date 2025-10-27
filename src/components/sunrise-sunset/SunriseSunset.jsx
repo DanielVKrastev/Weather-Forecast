@@ -15,7 +15,7 @@ export default function SunriseSunset({ weather }) {
     });
 
     return (
-        <div className="border rounded-2xl p-5 bg-gradient-to-br bg-white text-gray-800 m-2 shadow-md h-full">
+        <div className="border rounded-2xl p-5 bg-gradient-to-br from-white to-gray-50 text-gray-800 shadow-md hover:shadow-lg transition-all duration-500 m-1 h-full">
             <h3 className="font-semibold text-lg mb-4 text-center">
                 Sunrise & Sunset
             </h3>
