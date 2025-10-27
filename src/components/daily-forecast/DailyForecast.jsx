@@ -33,7 +33,7 @@ export default function DailyForecast({ dailyForecast }) {
     });
 
   return (
-    <ScrollContainer className="border rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50 text-gray-800 m-1 shadow-md hover:shadow-lg transition-all duration-500 lg:h-[90vh] md:h-[50vh] sm:h-[20vh]">
+    <ScrollContainer className="border rounded-2xl p-6 bg-gradient-to-br from-white to-gray-50 text-gray-800 m-1 shadow-md hover:shadow-lg transition-all duration-500 lg:h-[725px] md:h-[50vh] sm:h-[20vh]">
         {dailyForecastList.map((day, index) => {
           const weatherMain = day.weather?.[0]?.main;
           const icon = weatherIcons[weatherMain] || <Cloud className="w-10 h-10 text-gray-400" />;
