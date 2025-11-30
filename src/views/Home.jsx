@@ -15,6 +15,7 @@ import Visibility from "../components/visibility/Visibility.jsx";
 import Pressure from "../components/pressure/Pressure.jsx";
 import UviIndex from "../components/uvi-index/UviIndex.jsx";
 import uviAPI from "../api/uviAPI.js";
+import { selectVideo } from "./methods/selectVideo.js";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
@@ -50,7 +51,7 @@ export default function Home() {
     useEffect(() => {
         if (!weather) return;
 
-        const newVideo = selectVideo(weather.weather[0].main, weather.weather[0].description); //clouds // few clouds
+        const newVideo = selectVideo(weather, weather.weather[0].main, weather.weather[0].description); //clouds // few clouds
         const cachedVideo = localStorage.getItem("cachedVideoSrc");
 
         if (newVideo !== cachedVideo) {
@@ -60,55 +61,6 @@ export default function Home() {
     }, [weather]);
 
     if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
-
-    const selectVideo = (weatherMain, weatherDescription) => {
-        if (!weatherMain) return "/videos/sunny.mp4";
-
-        const main = weatherMain.toLowerCase();
-        const description = weatherDescription.toLowerCase();
-
-        const sunriseTime = new Date(weather.sys.sunrise * 1000);
-        const sunsetTime = new Date(weather.sys.sunset * 1000);
-        const hourTime = new Date(weather.dt * 1000);
-
-        // get only hours
-        const sunriseHour = sunriseTime.getHours();
-        const sunsetHour = sunsetTime.getHours();
-        const hours = hourTime.getHours();
-
-        // check is night
-        const isNight = hours < sunriseHour || hours >= sunsetHour;
-
-        const dayVideos = {
-            clear: "/videos/sunny.mp4",
-            drizzle: "/videos/water-drops-rain.mp4",
-            snow: "/videos/snow-snowing.mp4",
-            fog: "/videos/fog.mp4",
-            thunderstorm: "/videos/thunders-storm-lighting.mp4",
-            rain:
-                description.includes("light") || description.includes("moderate")
-                    ? "/videos/rain-slow.mp4"
-                    : "/videos/water-drops-rain.mp4",
-            clouds:
-                description.includes("few") || description.includes("scattered")
-                    ? "/videos/few-clouds.mp4"
-                    : "/videos/dark-clouds.mp4",
-        };
-
-        const nightVideos = {
-            clear: "/videos/clear-night-sky.mp4",
-            drizzle: "/videos/water-drops-rain.mp4",
-            snow: "/videos/snow-snowing.mp4",
-            fog: "/videos/fog.mp4",
-            thunderstorm: "/videos/thunders-storm-lighting.mp4",
-            rain: "/videos/rain-night.mp4",
-            clouds: "/videos/cloud-night-forest.mp4",
-        };
-
-        return isNight
-            ? nightVideos[main] || "/videos/clear-night-sky.mp4"
-            : dayVideos[main] || "/videos/sunny.mp4";
-    };
 
     return (
         <>
