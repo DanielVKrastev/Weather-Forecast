@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { getColor } from "./methods/getColor";
+import { getPressureText } from "./methods/getPressureText";
 
 export default function PressureGauge({ weather }) {
   const [pressure, setPressure] = useState(weather.main?.pressure || 1013);
@@ -12,20 +14,6 @@ export default function PressureGauge({ weather }) {
   const min = 950;
   const max = 1050;
   const percent = Math.min(Math.max((pressure - min) / (max - min), 0), 1);
-
-  const getColor = (pressureValue) => {
-    if (pressureValue < 1000) return "#3B82F6"; // blue
-    else if (pressureValue < 1015) return "#10B981"; // green
-    else if (pressureValue < 1030) return "#FBBF24"; // yellow
-    else return "#EF4444"; // red
-  };
-
-  const getPressureText = (pressureValue) => {
-    if (pressureValue < 1000) return "Low pressure";
-    else if (pressureValue < 1015) return "Normal";
-    else if (pressureValue < 1030) return "High";
-    else return "Very high";
-  };
 
   const color = getColor(pressure);
 
