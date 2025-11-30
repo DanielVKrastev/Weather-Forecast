@@ -16,6 +16,7 @@ import Pressure from "../components/pressure/Pressure.jsx";
 import UviIndex from "../components/uvi-index/UviIndex.jsx";
 import uviAPI from "../api/uviAPI.js";
 import { selectVideo } from "./methods/selectVideo.js";
+import Loading from "../components/loading/Loading.jsx";
 
 export default function Home() {
     const [weather, setWeather] = useState(null);
@@ -60,7 +61,7 @@ export default function Home() {
         }
     }, [weather]);
 
-    if (loading || !weather || weather.cod !== 200) return <p className="text-center mt-10">Loading...</p>;
+    if (loading || !weather || weather.cod !== 200) return <Loading />;
 
     return (
         <>
