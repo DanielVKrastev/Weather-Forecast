@@ -138,11 +138,11 @@ export default function Home() {
                             />
                         </div>
 
-                        <div className="lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-none">
+                        <div className="lg:row-span-3 lg:col-span-1 order-last lg:order-none h-auto min-h-[300px] max-h-[590px] md:col-span-2 md:order-last">
                             <WeatherMap />
                         </div>
 
-                        <div className="order-none sm:col-span-1 lg:row-span-3 lg:col-span-1 lg:order-none md:col-span-1 md:order-none">
+                        <div className="order-none lg:row-span-3 lg:col-span-1 lg:order-none md:row-span-2 md:col-span-3 md:order-none sm:col-span-1">
                             <DailyForecast dailyForecast={dailyForecast} />
                         </div>
 
@@ -154,7 +154,7 @@ export default function Home() {
                             <Humidity weather={weather} />
                         </div>
 
-                        <div className="xxl:col-span-1 lg:col-span-2">
+                        <div className="xxl:col-span-1 lg:col-span-2 ">
                             <SunriseSunset weather={weather} />
                         </div>
 
