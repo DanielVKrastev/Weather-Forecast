@@ -1,4 +1,6 @@
 import { ArrowUp } from "lucide-react";
+import { getColor } from "./methods/getColor";
+import { getAirQualityText } from "./methods/getAirQualityText";
 
 export default function Wind({ wind, airPollution }) {
     const msTokmh = 3.6;
@@ -6,29 +8,6 @@ export default function Wind({ wind, airPollution }) {
     const gusts = wind.gust ? (wind.gust * msTokmh).toFixed(1) : null;
     const airQuality = airPollution?.list?.[0]?.main?.aqi || 0;
     const direction = wind.deg || 0;
-
-    const getColor = (aqi) => {
-        switch (aqi) {
-            case 1: return "#2ECC71"; // 🟢 Good
-            case 2: return "#F1C40F"; // 🟡 Fair
-            case 3: return "#E67E22"; // 🟠 Moderate
-            case 4: return "#E74C3C"; // 🔴 Poor
-            case 5: return "#8E44AD"; // 🟣 Very Poor
-            default: return "#BDC3C7"; // gray
-        }
-    };
-
-    const getAirQualityText = (aqi) => {
-        switch (aqi) {
-            case 1: return "Good";
-            case 2: return "Fair";
-            case 3: return "Moderate";
-            case 4: return "Poor";
-            case 5: return "Very Poor";
-            default: return "No data";
-        }
-    };
-
     const color = getColor(airQuality);
     const text = getAirQualityText(airQuality);
 
