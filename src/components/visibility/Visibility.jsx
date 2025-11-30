@@ -1,19 +1,8 @@
+import { getColor } from "./methods/getColor";
+import { getVisibilityText } from "./methods/getVisibilityText";
+
 export default function Visibility({ weather }) {
   const visibilityKM = (weather.visibility / 1000).toFixed(1);
-
-  const getColor = (visibility) => {
-    if (visibility < 1) return "#E74C3C"; // 🔴
-    else if (visibility < 5) return "#E67E22"; // 🟠
-    else if (visibility < 10) return "#F1C40F"; // 🟡
-    else return "#2ECC71"; // 🟢
-  };
-
-  const getVisibilityText = (visibility) => {
-    if (visibility < 1) return "Very low";
-    else if (visibility < 5) return "Low";
-    else if (visibility < 10) return "Moderate";
-    else return "Good";
-  };
 
   return (
     <div className="border rounded-2xl p-5 bg-gradient-to-br from-white to-gray-50 text-gray-800 shadow-md hover:shadow-lg transition-all duration-500 m-1 h-full">
